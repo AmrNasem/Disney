@@ -19,6 +19,11 @@ html {
   font-size: 4rem;
   text-align: center;
 }
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.8rem;
+  }
+}
 .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -53,6 +58,7 @@ header nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
+  position: relative;
 }
 header nav .logo {
   width: 100px;
@@ -69,11 +75,53 @@ header nav ul {
   gap: 25px;
   font-size: 1.1rem;
 }
+header nav .menu-bar {
+  display: none;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+}
 
 header nav ul li a {
   text-decoration: none;
   padding: 20px 0;
   color: black;
+  display: block;
+  transition: 0.2s;
+}
+header nav ul li a:hover {
+  color: var(--main-color);
+}
+@media (max-width: 768px) {
+  header nav ul {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    flex-direction: column;
+    gap: 5px;
+    background-color: white;
+  }
+  header nav ul li a {
+    padding: 10px;
+    min-width: 200px;
+  }
+  header nav .menu-bar {
+    display: block;
+    font-size: 1.3rem;
+  }
+}
+.show-nav {
+  display: flex;
+  animation: show-nav 0.3s;
+}
+@keyframes show-nav {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
 header nav ul li .active {
   color: var(--main-color);
@@ -325,11 +373,16 @@ header nav ul li .active {
   text-align: start;
 }
 @media (max-width: 992px) {
-  .about .container {
-    flex-direction: column-reverse;
-  }
   .about img {
-    max-width: 100%;
+    display: none;
+  }
+  .about .content .main-title {
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .about {
+    text-align: center;
   }
   .about .content .main-title {
     text-align: center;
@@ -364,7 +417,7 @@ header nav ul li .active {
   font-size: 1.1rem;
   max-width: 70%;
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .about .content .box p {
     max-width: unset;
   }
@@ -387,15 +440,13 @@ header nav ul li .active {
   flex-wrap: wrap;
 }
 @media (max-width: 768px) {
-  .our-team .members {
-    flex-direction: column;
-  }
   .our-team .members p {
     text-align: center;
   }
 }
 .our-team .members > div {
-  flex-basis: calc(100% / 3 - 34px);
+  min-width: 210px;
+  flex: 1;
 }
 .our-team .members .avatar {
   margin: 0 auto 40px;
@@ -526,6 +577,11 @@ footer .content > div > :not(h4) {
     text-align: center;
   }
 }
+@media (max-width: 576px) {
+  footer {
+    text-align: center;
+  }
+}
 footer .content .features ul {
   list-style: none;
 }
@@ -535,6 +591,11 @@ footer .content .features ul li {
 footer .content .follow > div {
   display: flex;
   gap: 20px;
+}
+@media (max-width: 576px) {
+  footer .content .follow > div {
+    justify-content: center;
+  }
 }
 footer .content .follow > div svg {
   font-size: 1.1rem;
